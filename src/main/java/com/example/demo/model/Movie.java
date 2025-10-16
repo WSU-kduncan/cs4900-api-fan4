@@ -36,7 +36,7 @@ public class Movie {
 
   @OneToMany(mappedBy = "id.movie")
   private List<Review> reviews;
-
+  
   @OneToMany(mappedBy = "id.movie")
   private List<WatchedMovie> watchedMovies;
 }
