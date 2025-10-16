@@ -35,3 +35,27 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### macOS system files ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### macOS Thumbnails ###
+._*
+
+### macOS Directories potentially containing settings ###
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+### macOS Finder metadata ###
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
