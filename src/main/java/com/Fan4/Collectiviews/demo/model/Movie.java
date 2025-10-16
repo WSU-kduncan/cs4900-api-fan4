@@ -1,4 +1,4 @@
-package com.Fan4.Collectiviews.model;
+package com.Fan4.Collectiviews.demo.model;
 
 
 import java.time.LocalDate;
@@ -14,10 +14,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table
-public class movie {
+public class Movie {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // Best strategy type?
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "movieID", nullable = false)
 	Integer movieID;
 

@@ -1,8 +1,8 @@
-package com.Fan4.Collectiviews.model;
-
-import com.Fan4.Collectiviews.model.composite.watchedMovieId;
+package com.Fan4.Collectiviews.demo.model;
 
 import java.time.LocalDate;
+
+import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -13,10 +13,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table
-public class watchedMovie {
+public class WatchedMovie {
 
 	@EmbeddedId
-	watchedMovieId id;
+	WatchedMovieId id;
 
     @Column(name = "watchedDate", nullable = false)
 	LocalDate watchedDate; // Best Date class?

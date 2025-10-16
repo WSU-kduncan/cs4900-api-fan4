@@ -1,4 +1,4 @@
-package com.Fan4.Collectiviews.model;
+package com.Fan4.Collectiviews.demo.model;
 
 
 import java.time.LocalDate;
@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table
-public class user {
+public class User {
 
 	@Id
 	@Column(name = "username", length = 30 ,nullable = false)

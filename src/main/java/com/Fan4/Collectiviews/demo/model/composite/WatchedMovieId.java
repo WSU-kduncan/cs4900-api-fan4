@@ -1,12 +1,13 @@
-package com.Fan4.Collectiviews.model.composite;
+package com.Fan4.Collectiviews.demo.model.composite;
 
-import com.Fan4.Collectiviews.model.user;
-import com.Fan4.Collectiviews.model.movie;
+import java.io.Serializable;
+
+import com.Fan4.Collectiviews.demo.model.Movie;
+import com.Fan4.Collectiviews.demo.model.User;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,13 +16,13 @@ import lombok.NoArgsConstructor;
 @Data
 @Embeddable
 @NoArgsConstructor
-public class watchedMovieId implements Serializable {
+public class WatchedMovieId implements Serializable {
 
     @JoinColumn(name = "username", nullable = false)
     @ManyToOne
-    user user;
+    User user;
 
     @JoinColumn(name = "movieID", nullable = false)
     @ManyToOne
-    movie movie;
+    Movie movie;
 }

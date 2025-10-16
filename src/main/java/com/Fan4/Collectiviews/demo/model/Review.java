@@ -1,11 +1,8 @@
-package com.Fan4.Collectiviews.model;
-
-import com.Fan4.Collectiviews.model.composite.reviewId;
+package com.Fan4.Collectiviews.demo.model;
 
 import java.time.Instant;
-import java.time.LocalDate;
 
-import org.hibernate.annotations.UpdateTimestamp;
+import com.Fan4.Collectiviews.demo.model.composite.ReviewId;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -16,10 +13,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table
-public class review {
+public class Review {
 
 	@EmbeddedId
-	reviewId id;
+	ReviewId id;
 
     @Column(name = "rating", nullable = false)
 	byte rating;
