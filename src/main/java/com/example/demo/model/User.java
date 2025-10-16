@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -25,4 +27,10 @@ public class User {
 
   @Column(name = "birthDate", nullable = false)
   LocalDate birthDate;
+
+  @OneToMany(mappedBy = "id.user")
+  List<Review> reviews;
+
+  @OneToMany(mappedBy = "id.user")
+  List<WatchedMovie> watchedMovies;
 }
