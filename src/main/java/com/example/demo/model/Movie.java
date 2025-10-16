@@ -34,10 +34,10 @@ public class Movie {
   @Column(name = "releaseDate", nullable = false)
   LocalDate releaseDate;
 
-  @OneToMany(mappedBy = "movie")
+  @OneToMany(mappedBy = "id.movie")
   private List<Review> reviews;
 
   
-  @OneToMany(mappedBy = "movie")
+  @OneToMany(mappedBy = "id.movie")
   private List<WatchedMovie> watchedMovies;
 }
