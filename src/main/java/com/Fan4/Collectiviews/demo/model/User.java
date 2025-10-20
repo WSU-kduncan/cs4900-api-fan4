@@ -25,7 +25,7 @@ public class User {
 	String password_hash;
 
 	@Column(name = "birthDate", nullable = false)
-	LocalDate birthDate; // Best data type?
+	LocalDate birthDate;
 
 
 }
