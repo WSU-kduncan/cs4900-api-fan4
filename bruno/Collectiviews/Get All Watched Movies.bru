@@ -1,0 +1,16 @@
+meta {
+  name: Get All Watched Movies
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BASE_URL}}/watched-movie
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

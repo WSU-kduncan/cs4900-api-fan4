@@ -25,8 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(
     path = "watched-movie",
-    produces = MediaType.APPLICATION_JSON_VALUE,
-    consumes = MediaType.APPLICATION_JSON_VALUE // need both of these?
+    produces = MediaType.APPLICATION_JSON_VALUE
 )
 public class WatchedMovieController {
     
