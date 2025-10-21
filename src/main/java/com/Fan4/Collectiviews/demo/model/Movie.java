@@ -36,8 +36,8 @@ public class Movie {
 	LocalDate releaseDate;
 
 	@OneToMany(mappedBy = "id.movie")
-  	private List<Review> reviews;
+  	List<Review> reviews;
   
   	@OneToMany(mappedBy = "id.movie")
-  	private List<WatchedMovie> watchedMovies;
+  	List<WatchedMovie> watchedMovies;
 }
