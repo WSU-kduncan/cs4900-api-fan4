@@ -27,7 +27,7 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.findAll();
     }
-
+    
     // TODO: implement findById
 
     // TODO: implement findByString
