@@ -9,15 +9,12 @@ import com.Fan4.Collectiviews.demo.model.composite.ReviewId;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
-@Table
+@Table(name = "review")
 public class Review {
 
 	@EmbeddedId
