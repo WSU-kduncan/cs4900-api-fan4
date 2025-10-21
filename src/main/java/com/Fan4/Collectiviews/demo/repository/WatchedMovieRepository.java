@@ -6,11 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
+import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 
 @Repository
-public interface WatchedMovieRepository extends JpaRepository<WatchedMovie, Integer> {
+public interface WatchedMovieRepository extends JpaRepository<WatchedMovie, WatchedMovieId> {
 
   List<WatchedMovie> findById();
 
-  List<WatchedMovie> findByUsername(String username);
+  List<WatchedMovie> findByUsername(String user);
 }
