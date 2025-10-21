@@ -17,9 +17,8 @@ public class UserService {
     private UserRepository userRepository;
 
     /* Business Logic Methods */
-
-    public List<User> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
     }
+    
 }
