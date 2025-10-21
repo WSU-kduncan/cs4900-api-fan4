@@ -22,7 +22,7 @@ public class WatchedMovieId implements Serializable {
     @ManyToOne
     User user;
 
-    @JoinColumn(name = "movieID", nullable = false)
+    @JoinColumn(name = "movie", nullable = false)
     @ManyToOne
     Movie movie;
 }

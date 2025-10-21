@@ -11,7 +11,5 @@ import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 @Repository
 public interface WatchedMovieRepository extends JpaRepository<WatchedMovie, WatchedMovieId> {
 
-  List<WatchedMovie> findById();
-
-  List<WatchedMovie> findByUsername(String user);
+  List<WatchedMovie> findByIdUserUsername(String username);
 }

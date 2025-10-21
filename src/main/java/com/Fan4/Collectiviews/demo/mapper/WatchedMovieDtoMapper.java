@@ -18,7 +18,7 @@ public interface WatchedMovieDtoMapper {
     
     WatchedMovie toEntity(WatchedMovieDto watchedMovieDto) throws EntityNotFoundException;
 
-    WatchedMovieDto toDto(Optional<WatchedMovie> watchedMovie) throws EntityNotFoundException;
+    WatchedMovieDto toDto(WatchedMovie watchedMovie) throws EntityNotFoundException;
 
     List<WatchedMovieDto> toDtoList(List<WatchedMovie> WatchedMovieList) throws EntityNotFoundException;
 }

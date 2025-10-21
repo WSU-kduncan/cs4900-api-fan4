@@ -11,7 +11,7 @@ import lombok.Value;
 @Value
 public class WatchedMovieDto { // How to handle compound and foreign keys?
 
-  String username;
+  String user;
 
   Integer moveId;
 

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
+import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 import com.Fan4.Collectiviews.demo.repository.WatchedMovieRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -21,15 +22,15 @@ public class WatchedMovieService {
     return watchedMovieRepository.findAll();
   }
 
-  public Optional<WatchedMovie> getWatchedMovieById(Integer id) throws EntityNotFoundException{
+  public WatchedMovie getWatchedMovieById(WatchedMovieId id) throws EntityNotFoundException{
     Optional<WatchedMovie> result = watchedMovieRepository.findById(id);
     if (result.isPresent() && result.isEmpty()){
-        throw new EntityNotFoundException("No watched movie entry corresponding to " + id);
+        throw new EntityNotFoundException("No watched movie entry found");
     }
-    return watchedMovieRepository.findById(id);
+    return result.get();
   }
 
-  public List<WatchedMovie> getWatchedMoviesByUsername(String username) throws EntityNotFoundException{
-    return watchedMovieRepository.findByUsername(username);
-  }
+  public List<WatchedMovie> getWatchedMoviesByUsername(String user) throws EntityNotFoundException{
+    return watchedMovieRepository.findByIdUserUsername(user);
+  } 
 }
