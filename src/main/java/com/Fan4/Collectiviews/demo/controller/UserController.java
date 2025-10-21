@@ -34,6 +34,7 @@ public class UserController {
     // TODO: implement findAll controller method
     @GetMapping
     ResponseEntity<List<UserDto>> getAllUsers(){
+        System.out.println("Getting all users");
         return new ResponseEntity<>(
             userDtoMapper.toDtoList(userService.getAllUsers()), HttpStatus.OK
         );
@@ -46,7 +47,7 @@ public class UserController {
             userDtoMapper.toDto(userService.getUserById(username)), HttpStatus.OK
         );
     }
-    // TODO: implement findByString
+    // TODO: implement findByString 
 
 
 }
