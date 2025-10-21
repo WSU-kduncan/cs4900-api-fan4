@@ -13,7 +13,7 @@ public class WatchedMovieDto { // How to handle compound and foreign keys?
 
   String user;
 
-  Integer moveId;
+  Integer movieID;
 
   LocalDate watchedDate;
 }

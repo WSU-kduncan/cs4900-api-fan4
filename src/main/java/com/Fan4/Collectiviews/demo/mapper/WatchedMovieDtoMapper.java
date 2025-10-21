@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
@@ -18,6 +19,8 @@ public interface WatchedMovieDtoMapper {
     
     WatchedMovie toEntity(WatchedMovieDto watchedMovieDto) throws EntityNotFoundException;
 
+    @Mapping(target = "user", source = "id.user.username")
+    @Mapping(target = "movieID", source = "id.movie.movieID")
     WatchedMovieDto toDto(WatchedMovie watchedMovie) throws EntityNotFoundException;
 
     List<WatchedMovieDto> toDtoList(List<WatchedMovie> WatchedMovieList) throws EntityNotFoundException;
