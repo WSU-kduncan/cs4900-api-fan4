@@ -27,5 +27,4 @@ public class User {
 	@Column(name = "birthDate", nullable = false)
 	LocalDate birthDate;
 
-
 }

@@ -3,8 +3,10 @@ package com.Fan4.Collectiviews.demo.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties.Http;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,11 @@ public class UserController {
 
     // TODO: implement findById
     @GetMapping(path = "{username}")
+    ResponseEntity<UserDto> getUserById(@PathVariable String username) {
+        return new ResponseEntity<UserDto>(
+            userDtoMapper.toDto(userService.getUserById(username)), HttpStatus.OK
+        );
+    }
     // TODO: implement findByString
 
 
