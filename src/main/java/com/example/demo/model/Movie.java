@@ -36,7 +36,11 @@ public class Movie {
 
   @OneToMany(mappedBy = "id.movie")
   private List<Review> reviews;
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> d49f53e (pushing so my branch so it is up to date)
   @OneToMany(mappedBy = "id.movie")
   private List<WatchedMovie> watchedMovies;
 }

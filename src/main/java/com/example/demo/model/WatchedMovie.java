@@ -23,16 +23,6 @@ public class WatchedMovie {
   @EmbeddedId
   WatchedMovieId id;
 
-  @MapsId("username")
-  @ManyToOne
-  @JoinColumn(name = "username", nullable = false)
-  User user;
-
-  @MapsId("movieID")
-  @ManyToOne
-  @JoinColumn(name = "movieID", nullable = false)
-  Movie movie;
-
   @Column(name = "watchedDate", nullable = false)
   @CreationTimestamp
   Instant watchedDate; // May be a good idea...
