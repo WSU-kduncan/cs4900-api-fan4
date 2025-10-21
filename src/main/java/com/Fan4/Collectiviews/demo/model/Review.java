@@ -23,19 +23,8 @@ public class Review {
 	@EmbeddedId
 	ReviewId id;
 
-    @MapsId("movieID") 
-    @ManyToOne
-    @JoinColumn(name = "movieID")
-    Movie movie;
-    
-    @MapsId("username")
-    @ManyToOne
-    @JoinColumn(name = "username", nullable = false)
-    private User user;
-
     @Column(name = "rating", nullable = false)
 	byte rating;
-
 
     @Column(name = "writtenReview", nullable = true)
     String writtenReview;
