@@ -5,7 +5,12 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+import com.Fan4.Collectiviews.demo.dto.UserDto;
+import com.Fan4.Collectiviews.demo.mapper.UserDtoMapper;
 import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.service.UserService;
 
@@ -20,16 +25,20 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
     
     // Interface between controller and repository
-    private UserService userService;
+    private final UserService userService;
     
+    private final UserDtoMapper userDtoMapper;
+
     // TODO: implement findAll controller method
     @GetMapping
-    public List<User> getAllUsers(){
-        return userService.findAll();
+    ResponseEntity<List<UserDto>> getAllUsers(){
+        return new ResponseEntity<>(
+            userDtoMapper.toDtoList(userService.getAllUsers()), HttpStatus.OK
+        );
     }
-    
-    // TODO: implement findById
 
+    // TODO: implement findById
+    @GetMapping(path = "{username}")
     // TODO: implement findByString
 
 
