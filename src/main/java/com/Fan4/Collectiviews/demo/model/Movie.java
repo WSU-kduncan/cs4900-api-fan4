@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table
+@Table(name = "movie")
 public class Movie {
 
 	@Id
@@ -36,8 +36,8 @@ public class Movie {
 	LocalDate releaseDate;
 
 	@OneToMany(mappedBy = "id.movie")
-  	private List<Review> reviews;
+  	List<Review> reviews;
   
   	@OneToMany(mappedBy = "id.movie")
-  	private List<WatchedMovie> watchedMovies;
+  	List<WatchedMovie> watchedMovies;
 }

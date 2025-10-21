@@ -6,6 +6,7 @@ import com.Fan4.Collectiviews.demo.model.Movie;
 import com.Fan4.Collectiviews.demo.model.User;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -19,10 +20,10 @@ import lombok.NoArgsConstructor;
 public class ReviewId implements Serializable {
 
     @JoinColumn(name = "username", nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     User user;
 
     @JoinColumn(name = "movieID", nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Movie movie;
 }
