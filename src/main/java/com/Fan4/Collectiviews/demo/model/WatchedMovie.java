@@ -17,5 +17,5 @@ public class WatchedMovie {
   WatchedMovieId id;
 
   @Column(name = "watchedDate", nullable = false)
-  LocalDate watchedDate; // Best Date class?
+  LocalDate watchedDate;
 }
