@@ -9,7 +9,7 @@ import lombok.Value;
 @Builder
 @Data
 @Value
-public class WatchedMovieDto { // How to handle compound and foreign keys?
+public class WatchedMovieDto {
 
   String user;
 

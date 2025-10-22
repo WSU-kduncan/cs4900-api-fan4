@@ -1,7 +1,6 @@
 package com.Fan4.Collectiviews.demo.mapper;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,6 +16,8 @@ import jakarta.persistence.EntityNotFoundException;
     uses = {WatchedMovieService.class})
 public interface WatchedMovieDtoMapper {
     
+    @Mapping(target = "id.user.username", source = "user")
+    @Mapping(target = "id.movie.movieID", source = "movieID")
     WatchedMovie toEntity(WatchedMovieDto watchedMovieDto) throws EntityNotFoundException;
 
     @Mapping(target = "user", source = "id.user.username")
