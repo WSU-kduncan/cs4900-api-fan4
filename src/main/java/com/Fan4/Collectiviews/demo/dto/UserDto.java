@@ -1,6 +1,7 @@
 package com.Fan4.Collectiviews.demo.dto;
 
 import java.time.LocalDate;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
@@ -14,5 +15,5 @@ public class UserDto {
 
   String name;
 
-  LocalDate birthDate;
+  LocalDate birthYear;
 }
