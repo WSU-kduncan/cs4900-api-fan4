@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table
+@Table(name = "watchedMovie")
 public class WatchedMovie {
 
   @EmbeddedId

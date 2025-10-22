@@ -11,7 +11,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @Data
 @Entity
-@Table
+@Table(name = "review")
 public class Review {
 
   @EmbeddedId

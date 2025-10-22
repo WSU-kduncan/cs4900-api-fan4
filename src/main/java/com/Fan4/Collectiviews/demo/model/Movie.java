@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table
+@Table(name = "movie")
 public class Movie {
 
   @Id
@@ -32,10 +31,4 @@ public class Movie {
 
   @Column(name = "releaseDate", nullable = false)
   LocalDate releaseDate;
-
-  @OneToMany(mappedBy = "id.movie")
-  private List<Review> reviews;
-
-  @OneToMany(mappedBy = "id.movie")
-  private List<WatchedMovie> watchedMovies;
 }
