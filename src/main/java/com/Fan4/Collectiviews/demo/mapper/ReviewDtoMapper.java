@@ -10,6 +10,8 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface ReviewDtoMapper {
 
+  @Mapping(target = "id.user.username", source = "username")
+  @Mapping(target = "id.movie.movieID", source = "movieID")
   Review toEntity(ReviewDto reviewDto) throws EntityNotFoundException;
 
   @Mapping(target = "username", source = "id.user.username")
