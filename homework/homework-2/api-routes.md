@@ -44,7 +44,7 @@
 - Update Movie
 
 ### watchedMovie Entity
-- Update movie status
+- Update movie status (Watched Date)
 
 ### review Entity
 - Update review
