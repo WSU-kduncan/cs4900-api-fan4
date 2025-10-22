@@ -8,6 +8,7 @@ import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.repository.UserRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -15,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
     
     // Interface to repository
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     /* Business Logic Methods */
     public List<User> getAllUsers(){

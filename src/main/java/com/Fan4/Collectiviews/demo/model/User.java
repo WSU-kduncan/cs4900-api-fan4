@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table
+@Table(name = "user")
 public class User {
 
 	@Id
@@ -24,7 +24,7 @@ public class User {
 	@Column(name = "password_hash", length = 30, nullable = false)
 	String password_hash;
 
-	@Column(name = "birthDate", nullable = false)
-	LocalDate birthDate;
-
+	@Column(name = "birthYear", nullable = false)
+	LocalDate birthYear;
+	
 }

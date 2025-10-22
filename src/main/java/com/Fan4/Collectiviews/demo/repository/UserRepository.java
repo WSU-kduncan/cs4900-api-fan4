@@ -5,4 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.Fan4.Collectiviews.demo.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, String> {}
+public interface UserRepository extends JpaRepository<User, String> {
+    // Need to define findAll() signature here?
+    // Constructor issue?
+}
