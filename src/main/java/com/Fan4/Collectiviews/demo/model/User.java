@@ -24,12 +24,4 @@ public class User {
 
   @Column(name = "birthYear", nullable = false)
   LocalDate birthYear;
-
-  // @OneToMany //! Maybe uncomment
-  // @JoinColumn(name = "id.user", nullable = false)
-  // List<Review> reviews;
-
-  // @OneToMany //! Maybe uncomment
-  // @JoinColumn(name = "id.user", nullable = false)
-  // List<WatchedMovie> watchedMovies;
 }

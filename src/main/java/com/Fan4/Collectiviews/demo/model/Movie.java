@@ -30,12 +30,4 @@ public class Movie {
 
   @Column(name = "releaseDate", nullable = false)
   LocalDate releaseDate;
-
-  // @OneToMany //! Maybe uncomment
-  // @JoinColumn(name = "id.movieID", nullable = false)
-  // List<Review> reviews;
-
-  // @OneToMany //! Maybe uncomment
-  // @JoinColumn(name = "id.movieID", nullable = false)
-  // List<WatchedMovie> watchedMovies;
 }
