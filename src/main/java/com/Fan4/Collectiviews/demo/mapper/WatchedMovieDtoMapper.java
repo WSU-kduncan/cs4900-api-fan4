@@ -15,15 +15,15 @@ import jakarta.persistence.EntityNotFoundException;
     componentModel = "spring",
     uses = {WatchedMovieService.class})
 public interface WatchedMovieDtoMapper {
-    
-    @Mapping(target = "id.user.username", source = "user")
-    @Mapping(target = "id.movie.movieID", source = "movieID")
-    WatchedMovie toEntity(WatchedMovieDto watchedMovieDto) throws EntityNotFoundException;
 
-    @Mapping(target = "user", source = "id.user.username")
-    @Mapping(target = "movieID", source = "id.movie.movieID")
-    WatchedMovieDto toDto(WatchedMovie watchedMovie) throws EntityNotFoundException;
+  @Mapping(target = "id.user.username", source = "user")
+  @Mapping(target = "id.movie.movieID", source = "movieID")
+  WatchedMovie toEntity(WatchedMovieDto watchedMovieDto) throws EntityNotFoundException;
 
-    List<WatchedMovieDto> toDtoList(List<WatchedMovie> WatchedMovieList) throws EntityNotFoundException;
+  @Mapping(target = "user", source = "id.user.username")
+  @Mapping(target = "movieID", source = "id.movie.movieID")
+  WatchedMovieDto toDto(WatchedMovie watchedMovie) throws EntityNotFoundException;
+
+  List<WatchedMovieDto> toDtoList(List<WatchedMovie> WatchedMovieList)
+      throws EntityNotFoundException;
 }
-

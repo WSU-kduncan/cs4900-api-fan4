@@ -1,16 +1,13 @@
 package com.Fan4.Collectiviews.demo.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
 import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 import com.Fan4.Collectiviews.demo.repository.WatchedMovieRepository;
-
 import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -22,15 +19,15 @@ public class WatchedMovieService {
     return watchedMovieRepository.findAll();
   }
 
-  public WatchedMovie getWatchedMovieById(WatchedMovieId id) throws EntityNotFoundException{
+  public WatchedMovie getWatchedMovieById(WatchedMovieId id) throws EntityNotFoundException {
     Optional<WatchedMovie> result = watchedMovieRepository.findById(id);
-    if (result.isPresent() && result.isEmpty()){
-        throw new EntityNotFoundException("No watched movie entry found");
+    if (result.isPresent() && result.isEmpty()) {
+      throw new EntityNotFoundException("No watched movie entry found");
     }
     return result.get();
   }
 
-  public List<WatchedMovie> getWatchedMoviesByUsername(String user) throws EntityNotFoundException{
+  public List<WatchedMovie> getWatchedMoviesByUsername(String user) throws EntityNotFoundException {
     return watchedMovieRepository.findByIdUserUsername(user);
-  } 
+  }
 }
