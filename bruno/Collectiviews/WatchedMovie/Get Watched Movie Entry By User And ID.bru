@@ -1,11 +1,11 @@
 meta {
-  name: Get Watched Movies By User
+  name: Get Watched Movie Entry By User And ID
   type: http
-  seq: 4
+  seq: 2
 }
 
 get {
-  url: {{BASE_URL}}/watched-movie/by-user/jdoe
+  url: {{BASE_URL}}/watched-movie/1/jdoe
   body: json
   auth: inherit
 }
