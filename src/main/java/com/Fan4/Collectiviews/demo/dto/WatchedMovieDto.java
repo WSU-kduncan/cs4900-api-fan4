@@ -1,7 +1,6 @@
 package com.Fan4.Collectiviews.demo.dto;
 
 import java.time.LocalDate;
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
@@ -15,5 +14,5 @@ public class WatchedMovieDto {
 
   Integer movieID;
 
-  LocalDate watchedDate;  
+  LocalDate watchedDate;
 }

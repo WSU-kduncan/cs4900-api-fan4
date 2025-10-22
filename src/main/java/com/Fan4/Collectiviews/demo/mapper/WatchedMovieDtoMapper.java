@@ -1,15 +1,12 @@
 package com.Fan4.Collectiviews.demo.mapper;
 
-import java.util.List;
-
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-
 import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
 import com.Fan4.Collectiviews.demo.service.WatchedMovieService;
-
 import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(
     componentModel = "spring",
