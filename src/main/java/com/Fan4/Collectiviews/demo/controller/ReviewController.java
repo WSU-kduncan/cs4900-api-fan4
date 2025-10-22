@@ -1,7 +1,15 @@
 package com.Fan4.Collectiviews.demo.controller;
 
+import com.Fan4.Collectiviews.demo.dto.ReviewDto;
+import com.Fan4.Collectiviews.demo.mapper.ReviewDtoMapper;
+import com.Fan4.Collectiviews.demo.model.Movie;
+import com.Fan4.Collectiviews.demo.model.Review;
+import com.Fan4.Collectiviews.demo.model.User;
+import com.Fan4.Collectiviews.demo.model.composite.ReviewId;
+import com.Fan4.Collectiviews.demo.service.ReviewService;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,53 +18,40 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Fan4.Collectiviews.demo.dto.ReviewDto;
-import com.Fan4.Collectiviews.demo.mapper.ReviewDtoMapper;
-import com.Fan4.Collectiviews.demo.model.Movie;
-import com.Fan4.Collectiviews.demo.model.Review;
-import com.Fan4.Collectiviews.demo.model.User;
-import com.Fan4.Collectiviews.demo.model.composite.ReviewId;
-import com.Fan4.Collectiviews.demo.service.ReviewService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
-
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(
-    path = "review",
-    produces = MediaType.APPLICATION_JSON_VALUE
-)
+@RequestMapping(path = "review", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ReviewController {
 
-    private final ReviewService reviewService;
-    private final ReviewDtoMapper reviewMapper;
+  private final ReviewService reviewService;
+  private final ReviewDtoMapper reviewMapper;
 
-    @GetMapping
-    ResponseEntity<List<ReviewDto>> getAllReviews() {
-        List<Review> reviews = reviewService.getAllReviews();
-        return new ResponseEntity<>(reviewMapper.toDtoList(reviews), HttpStatus.OK);
+  @GetMapping
+  ResponseEntity<List<ReviewDto>> getAllReviews() {
+    List<Review> reviews = reviewService.getAllReviews();
+    return new ResponseEntity<>(reviewMapper.toDtoList(reviews), HttpStatus.OK);
+  }
+
+  @GetMapping("/by-id/{username}/{movieID}")
+  ResponseEntity<ReviewDto> getReviewById(
+      @PathVariable String username, @PathVariable Integer movieID) {
+    ReviewId id = new ReviewId();
+    id.setUser(new User());
+    id.getUser().setUsername(username);
+    id.setMovie(new Movie());
+    id.getMovie().setMovieID(movieID);
+
+    try {
+      Review review = reviewService.getReviewById(id);
+      return new ResponseEntity<>(reviewMapper.toDto(review), HttpStatus.OK);
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+  }
 
-    @GetMapping("/by-id/{username}/{movieID}")
-    ResponseEntity<ReviewDto> getReviewById(@PathVariable String username, @PathVariable Integer movieID) {
-        ReviewId id = new ReviewId();
-        id.setUser(new User());
-        id.getUser().setUsername(username);
-        id.setMovie(new Movie());
-        id.getMovie().setMovieID(movieID);
-
-        try {
-            Review review = reviewService.getReviewById(id);
-            return new ResponseEntity<>(reviewMapper.toDto(review), HttpStatus.OK);
-        } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @GetMapping("/by-user/{username}")
-    ResponseEntity<List<ReviewDto>> getReviewsByUser(@PathVariable String username) {
-        List<Review> reviews = reviewService.getReviewsByUser(username);
-        return new ResponseEntity<>(reviewMapper.toDtoList(reviews), HttpStatus.OK);
-    }
+  @GetMapping("/by-user/{username}")
+  ResponseEntity<List<ReviewDto>> getReviewsByUser(@PathVariable String username) {
+    List<Review> reviews = reviewService.getReviewsByUser(username);
+    return new ResponseEntity<>(reviewMapper.toDtoList(reviews), HttpStatus.OK);
+  }
 }
