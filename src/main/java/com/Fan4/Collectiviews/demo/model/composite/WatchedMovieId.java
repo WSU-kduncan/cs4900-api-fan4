@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WatchedMovieId implements Serializable {
 
-  @JoinColumn(name = "username", nullable = false)
   @ManyToOne
+  @JoinColumn(name = "username", nullable = false)
   User user;
 
-  @JoinColumn(name = "movieID", nullable = false)
   @ManyToOne
+  @JoinColumn(name = "movieID", nullable = false)
   Movie movie;
 }

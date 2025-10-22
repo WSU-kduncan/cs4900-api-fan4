@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
@@ -33,12 +31,4 @@ public class Movie {
 
   @Column(name = "releaseDate", nullable = false)
   LocalDate releaseDate;
-
-  @OneToMany
-  @JoinColumn(name = "id.movie", nullable = false)
-  List<Review> reviews;
-
-  @OneToMany
-  @JoinColumn(name = "id.movie", nullable = false)
-  List<WatchedMovie> watchedMovies;
 }

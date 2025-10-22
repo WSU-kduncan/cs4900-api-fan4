@@ -7,7 +7,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
-import java.util.List;
 import lombok.Data;
 
 @Data
@@ -27,12 +26,4 @@ public class User {
 
   @Column(name = "birthYear", nullable = false)
   LocalDate birthYear;
-
-  @OneToMany
-  @JoinColumn(name = "id.user", nullable = false)
-  List<Review> reviews;
-
-  @OneToMany
-  @JoinColumn(name = "id.user", nullable = false)
-  List<WatchedMovie> watchedMovies;
 }
