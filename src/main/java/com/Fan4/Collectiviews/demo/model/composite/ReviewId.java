@@ -20,10 +20,10 @@ import lombok.NoArgsConstructor;
 public class ReviewId implements Serializable {
 
     @JoinColumn(name = "username", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     User user;
 
     @JoinColumn(name = "movieID", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     Movie movie;
 }

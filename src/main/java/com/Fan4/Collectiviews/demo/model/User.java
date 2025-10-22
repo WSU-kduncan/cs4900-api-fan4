@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -25,12 +26,14 @@ public class User {
 	@Column(name = "password_hash", length = 30, nullable = false)
 	String password_hash;
 
-	@Column(name = "birthDate", nullable = false)
-	LocalDate birthDate;
+	@Column(name = "birthYear", nullable = false)
+	LocalDate birthYear;
 
-	@OneToMany(mappedBy = "id.user")
+	@OneToMany
+	@JoinColumn(name = "id.user", nullable = false)
   	List<Review> reviews;
   
-  	@OneToMany(mappedBy = "id.user")
+  	@OneToMany
+	@JoinColumn(name = "id.user", nullable = false)
   	List<WatchedMovie> watchedMovies;
 }
