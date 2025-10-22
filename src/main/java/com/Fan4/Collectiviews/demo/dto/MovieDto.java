@@ -1,7 +1,6 @@
 package com.Fan4.Collectiviews.demo.dto;
 
 import java.time.LocalDate;
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
@@ -10,13 +9,13 @@ import lombok.Value;
 @Data
 @Value
 public class MovieDto {
-    Integer movieID;
+  Integer movieID;
 
-    String title;
+  String title;
 
-    String director;
+  String director;
 
-    String genre;
+  String genre;
 
-    LocalDate releaseDate;
+  LocalDate releaseDate;
 }
