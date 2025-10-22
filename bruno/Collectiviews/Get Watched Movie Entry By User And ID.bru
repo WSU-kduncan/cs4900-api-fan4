@@ -1,0 +1,16 @@
+meta {
+  name: Get Watched Movie Entry By User And ID
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{BASE_URL}}/watched-movie/1/jdoe
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
