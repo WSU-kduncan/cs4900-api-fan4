@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Collectiviews",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
