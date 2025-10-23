@@ -25,24 +25,29 @@ public class UserController {
 
   private final UserDtoMapper userDtoMapper;
 
-  // TODO: implement findAll controller method
   @GetMapping
   ResponseEntity<List<UserDto>> getAllUsers() {
-    System.out.println("Getting all users");
     return new ResponseEntity<>(userDtoMapper.toDtoList(userService.getAllUsers()), HttpStatus.OK);
   }
 
-  // TODO: implement findById
-  @GetMapping(path = "{username}")
+  @GetMapping(path = "by-username/{username}")
   ResponseEntity<UserDto> getUserById(@PathVariable String username) {
+    System.out.println("=== getUserById called with username: " + username + " ===");
     return new ResponseEntity<UserDto>(
         userDtoMapper.toDto(userService.getUserById(username)), HttpStatus.OK);
   }
+
   // TODO: implement findByString
+  @GetMapping(path = "search/{name}")
+  ResponseEntity<UserDto> getUserByExactName(@PathVariable String name) {
+    System.out.println("=== getUserByExactName called with username: " + name + " ===");
+    return new ResponseEntity<UserDto>(
+      userDtoMapper.toDto(userService.getUserByExactName(name)), HttpStatus.OK);
+  }
 
   // Simple test endpoint
-  @GetMapping("/test")
-  public ResponseEntity<String> test() {
-    return ResponseEntity.ok("UserController is working!");
-  }
+  // @GetMapping("/{username}")
+  // public ResponseEntity<String> test() {
+  //   return ResponseEntity.ok("UserController is working!");
+  // }
 }

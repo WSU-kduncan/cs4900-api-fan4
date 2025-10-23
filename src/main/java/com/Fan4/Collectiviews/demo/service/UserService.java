@@ -24,4 +24,23 @@ public class UserService {
         .findById(username)
         .orElseThrow(() -> new EntityNotFoundException("User (" + username + ") not found"));
   }
+
+  // Get user by exact name match
+  public User getUserByExactName(String name) {
+    return userRepository
+      .findByName(name)
+      .orElseThrow(() -> new
+      EntityNotFoundException("User with name(" + name + ") not found"));
+  }
+
+  public List<User> getUsersByString(String name) {
+    List<User> users = userRepository.findByNameContainingIgnoreCase(name);
+
+    if (users.isEmpty()) {
+      throw new EntityNotFoundException("No users found with name containing (" + 
+      name + ")");
+    }
+
+    return users;
+  }
 }
