@@ -1,10 +1,11 @@
 package com.Fan4.Collectiviews.demo.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.time.LocalDate;
 import lombok.Data;
 
 @Data
@@ -22,6 +23,6 @@ public class User {
   @Column(name = "password_hash", length = 30, nullable = false)
   String password_hash;
 
-  @Column(name = "birthYear", nullable = false)
-  LocalDate birthYear;
+  @Column(name = "birthDate", nullable = false)
+  LocalDate birthDate;
 }
