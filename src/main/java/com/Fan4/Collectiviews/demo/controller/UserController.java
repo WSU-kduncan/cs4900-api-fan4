@@ -42,7 +42,7 @@ public class UserController {
   ResponseEntity<UserDto> getUserByExactName(@PathVariable String name) {
     System.out.println("=== getUserByExactName called with username: " + name + " ===");
     return new ResponseEntity<UserDto>(
-      userDtoMapper.toDto(userService.getUserByExactName(name)), HttpStatus.OK);
+        userDtoMapper.toDto(userService.getUserByExactName(name)), HttpStatus.OK);
   }
 
   // Simple test endpoint
