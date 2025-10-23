@@ -1,0 +1,15 @@
+meta {
+  name: Get Movie By Id
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{BASE_URL}}/movie/3
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

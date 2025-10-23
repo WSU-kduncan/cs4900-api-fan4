@@ -1,0 +1,15 @@
+meta {
+  name: Get All Reviews
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8080/Fan4/review
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
