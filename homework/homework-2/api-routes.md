@@ -10,8 +10,8 @@
 ### watchedMovie Entity
 - All watched movies
 - Watched Movies by Id (composite)
-- watchedMovie by username
-- watchedMovie by movie
+- WatchedMovie by username
+- WatchedMovie by movie
 
 ### review Entity
 - All reviews
@@ -26,7 +26,6 @@
 ## POST methods
 
 ### movie Entity
-- New Review
 - New Movie
 
 ### watchedMovie Entity
@@ -44,7 +43,7 @@
 - Update Movie
 
 ### watchedMovie Entity
-- Update movie status (Watched Date)
+- Update watched movie status (Watched Date)
 
 ### review Entity
 - Update review
