@@ -22,6 +22,7 @@
 - All users
 - Users by Id
 - Users by review
+- Users by exact name
 
 ## POST methods
 
@@ -36,6 +37,8 @@
   
 ### user Entity
 - Create new user
+- Change username
+- Change name
   
 ## PUT methods
 
@@ -49,4 +52,6 @@
 - Update review
 
 ### user Entity
-- Update user info
+- Update username
+- Update name
+- Update birth year
