@@ -5,9 +5,17 @@ meta {
 }
 
 post {
-  url: {{BASE_URL}}/watched-movie/1/bwayne
-  body: none
+  url: {{BASE_URL}}/watched-movie
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "user": "bwayne",
+    "movieID": 4,
+    "watchedDate": "2020-03-02"
+  }
 }
 
 settings {

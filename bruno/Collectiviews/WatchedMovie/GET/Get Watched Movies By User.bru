@@ -6,18 +6,8 @@ meta {
 
 get {
   url: {{BASE_URL}}/watched-movie/by-user/jdoe
-  body: json
+  body: none
   auth: inherit
-}
-
-body:json {
-  [
-    {
-      "user": "jdoe",
-      "movieID": 3,
-      "watchedDate": "2023-07-06"
-    }
-  ]
 }
 
 settings {

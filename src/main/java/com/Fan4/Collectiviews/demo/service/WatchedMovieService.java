@@ -1,10 +1,10 @@
 package com.Fan4.Collectiviews.demo.service;
 
+import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
+import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
 import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 import com.Fan4.Collectiviews.demo.repository.WatchedMovieRepository;
-import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
-import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
@@ -25,17 +25,34 @@ public class WatchedMovieService {
 
   public WatchedMovie getWatchedMovieById(WatchedMovieId id) throws EntityNotFoundException {
     Optional<WatchedMovie> result = watchedMovieRepository.findById(id);
-    if (result.isPresent() && result.isEmpty()) {
+    if (result.isEmpty()) {
       throw new EntityNotFoundException("No watched movie entry found");
     }
     return result.get();
   }
 
   public List<WatchedMovie> getWatchedMoviesByUsername(String user) throws EntityNotFoundException {
-    return watchedMovieRepository.findByIdUserUsername(user);
+    List<WatchedMovie> watchedMovieList = watchedMovieRepository.findByIdUserUsername(user);
+
+    if (watchedMovieList.isEmpty()) {
+      throw new EntityNotFoundException("No watched movie entries found for this user");
+    }
+    return watchedMovieList;
   }
 
-  public WatchedMovie createWatchedMovie(WatchedMovieDto watchedMovieDto) throws EntityNotFoundException {
+  public WatchedMovie createOrUpdateWatchedMovie(WatchedMovieDto watchedMovieDto)
+      throws EntityNotFoundException {
     return watchedMovieRepository.saveAndFlush(watchedMovieDtoMapper.toEntity(watchedMovieDto));
+  }
+
+  public WatchedMovie createNewWatchedMovie(WatchedMovieDto watchedMovieDto)
+      throws EntityNotFoundException {
+    WatchedMovie watchedMovie = watchedMovieDtoMapper.toEntity(watchedMovieDto);
+
+    if (watchedMovieRepository.existsById(watchedMovie.getId())) {
+      throw new EntityNotFoundException("Entry already exists");
+    }
+
+    return watchedMovieRepository.saveAndFlush(watchedMovie);
   }
 }
