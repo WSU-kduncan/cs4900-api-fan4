@@ -24,3 +24,7 @@
 ![GetWatchedMoviesByID.png](./sanchez-homework-2/GetWatchedMoviesByID.png)
 
 ![GetWatchedMoviesByUser.png](./sanchez-homework-2/GetWatchedMoviesByUser.png)
+
+![PutWatchedMovie.png](./sanchez-homework-4/PutWatchedMovie.png)
+
+![PostNewWatchedMovie.png](./sanchez-homework-4/PostNewWatchedMovie.png)
