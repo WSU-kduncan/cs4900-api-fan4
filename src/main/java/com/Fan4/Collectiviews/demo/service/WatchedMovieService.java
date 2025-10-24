@@ -3,6 +3,8 @@ package com.Fan4.Collectiviews.demo.service;
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
 import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 import com.Fan4.Collectiviews.demo.repository.WatchedMovieRepository;
+import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
+import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 public class WatchedMovieService {
 
   private final WatchedMovieRepository watchedMovieRepository;
+
+  private final WatchedMovieDtoMapper watchedMovieDtoMapper;
 
   public List<WatchedMovie> getAllWatchedMovies() {
     return watchedMovieRepository.findAll();
@@ -29,5 +33,9 @@ public class WatchedMovieService {
 
   public List<WatchedMovie> getWatchedMoviesByUsername(String user) throws EntityNotFoundException {
     return watchedMovieRepository.findByIdUserUsername(user);
+  }
+
+  public WatchedMovie createWatchedMovie(WatchedMovieDto watchedMovieDto) throws EntityNotFoundException {
+    return watchedMovieRepository.saveAndFlush(watchedMovieDtoMapper.toEntity(watchedMovieDto));
   }
 }

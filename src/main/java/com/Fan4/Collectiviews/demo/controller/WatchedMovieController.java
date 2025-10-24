@@ -15,6 +15,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +35,7 @@ public class WatchedMovieController {
         watchedMovieDtoMapper.toDtoList(watchedMovieService.getAllWatchedMovies()), HttpStatus.OK);
   }
 
-  @GetMapping(path = "{movieId}/{username}") // Composite key question
+  @GetMapping(path = "{movieId}/{username}")
   ResponseEntity<WatchedMovieDto> getWatchedMoviesById(
       @PathVariable Integer movieId, @PathVariable String username) {
     WatchedMovieId id = new WatchedMovieId();
@@ -55,5 +57,17 @@ public class WatchedMovieController {
     return new ResponseEntity<>(
         watchedMovieDtoMapper.toDtoList(watchedMovieService.getWatchedMoviesByUsername(username)),
         HttpStatus.OK);
+  }
+
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<Object> postWatchedMovie(@RequestBody WatchedMovieDto watchedMovieDto){
+    WatchedMovie watchedMovie;
+    try{
+      watchedMovie = watchedMovieService.createWatchedMovie(watchedMovieDto);
+    }
+    catch (EntityNotFoundException e){
+      return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+    }
+    return new ResponseEntity<>(watchedMovie, HttpStatus.OK);
   }
 }
