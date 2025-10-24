@@ -1,0 +1,24 @@
+meta {
+  name: Post New Watched Movie Entry
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{BASE_URL}}/watched-movie
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "user": "bwayne",
+    "movieID": 1,
+    "watchedDate": "2023-08-06"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

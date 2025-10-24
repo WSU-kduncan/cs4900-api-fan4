@@ -1,5 +1,18 @@
 package com.Fan4.Collectiviews.demo.controller;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
 import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
 import com.Fan4.Collectiviews.demo.model.Movie;
@@ -7,18 +20,9 @@ import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
 import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 import com.Fan4.Collectiviews.demo.service.WatchedMovieService;
+
 import jakarta.persistence.EntityNotFoundException;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
@@ -59,8 +63,8 @@ public class WatchedMovieController {
         HttpStatus.OK);
   }
 
-  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  ResponseEntity<Object> postWatchedMovie(@RequestBody WatchedMovieDto watchedMovieDto){
+  @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<Object> putWatchedMovie(@RequestBody WatchedMovieDto watchedMovieDto){
     WatchedMovie watchedMovie;
     try{
       watchedMovie = watchedMovieService.createWatchedMovie(watchedMovieDto);
@@ -68,6 +72,27 @@ public class WatchedMovieController {
     catch (EntityNotFoundException e){
       return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
     }
-    return new ResponseEntity<>(watchedMovie, HttpStatus.OK);
+    return new ResponseEntity<>(watchedMovieDtoMapper.toDto(watchedMovie), HttpStatus.OK);
+  }
+
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<Object> postWatchedMovie(@RequestBody WatchedMovieDto watchedMovieDto){
+    WatchedMovie watchedMovie;
+    WatchedMovieId id = new WatchedMovieId();
+    id.setUser(new User());
+    id.getUser().setUsername(watchedMovieDto.getUser());
+    id.setMovie(new Movie());
+    id.getMovie().setMovieID(watchedMovieDto.getMovieID());
+    watchedMovie = watchedMovieService.getWatchedMovieById(id);
+
+    if (watchedMovie == null){ // If resourece doesn't already exist
+      watchedMovie = watchedMovieService.createWatchedMovie(watchedMovieDto);
+      return new ResponseEntity<>(watchedMovieDtoMapper.toDto(watchedMovie), HttpStatus.OK);
+    }
+    else{ 
+      return new ResponseEntity<>(HttpStatus.CONFLICT);
+    }
   }
 }
+
+
