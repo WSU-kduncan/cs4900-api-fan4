@@ -15,5 +15,5 @@ public class UserDto {
 
   String name;
 
-  LocalDate birthDate;
+  LocalDate birthYear;
 }

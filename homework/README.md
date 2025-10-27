@@ -24,3 +24,7 @@
 ![GetWatchedMoviesByID.png](./sanchez-homework-2/GetWatchedMoviesByID.png)
 
 ![GetWatchedMoviesByUser.png](./sanchez-homework-2/GetWatchedMoviesByUser.png)
+
+### Review (Husainov)
+![Put Review](./husainov-homework-4/PutUpdateReview.png)
+![Put Review](./husainov-homework-4/PostNewReview.png)

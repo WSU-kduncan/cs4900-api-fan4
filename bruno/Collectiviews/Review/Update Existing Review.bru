@@ -1,0 +1,26 @@
+meta {
+  name: Update Existing Review
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{BASE_URL}}/review
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "username": "jdoe",
+    "movieId": "2",
+    "rating" : 4.5,
+    "writtenReview": "Amazing movie so good!"
+    "reviewDate": 2025-10-27T01:26:37.749Z"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

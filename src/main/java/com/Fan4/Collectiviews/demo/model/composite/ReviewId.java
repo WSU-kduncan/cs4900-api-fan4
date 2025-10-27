@@ -1,11 +1,14 @@
 package com.Fan4.Collectiviews.demo.model.composite;
 
+import java.io.Serializable;
+
 import com.Fan4.Collectiviews.demo.model.Movie;
 import com.Fan4.Collectiviews.demo.model.User;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,10 +20,10 @@ import lombok.NoArgsConstructor;
 public class ReviewId implements Serializable {
 
   @JoinColumn(name = "username", nullable = false)
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.MERGE)
   User user;
 
   @JoinColumn(name = "movieID", nullable = false)
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.MERGE)
   Movie movie;
 }

@@ -1,13 +1,20 @@
 package com.Fan4.Collectiviews.demo.mapper;
 
-import com.Fan4.Collectiviews.demo.dto.ReviewDto;
-import com.Fan4.Collectiviews.demo.model.Review;
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+import com.Fan4.Collectiviews.demo.dto.ReviewDto;
+import com.Fan4.Collectiviews.demo.model.Review;
+import com.Fan4.Collectiviews.demo.service.ReviewService;
+
+import jakarta.persistence.EntityNotFoundException;
+
+@Mapper(
+  componentModel = "spring",
+  uses = {ReviewService.class}
+)
 public interface ReviewDtoMapper {
 
   @Mapping(target = "id.user.username", source = "username")
