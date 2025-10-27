@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,9 +46,10 @@ public class UserController {
         userDtoMapper.toDto(userService.getUserByExactName(name)), HttpStatus.OK);
   }
 
-  // Simple test endpoint
-  // @GetMapping("/{username}")
-  // public ResponseEntity<String> test() {
-  //   return ResponseEntity.ok("UserController is working!");
-  // }
+  // TODO: Implement a POST request
+
+  //@PostMapping(path = "/user")
+
+
+  // TODO: Implement a PUT request
 }
