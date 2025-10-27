@@ -25,6 +25,7 @@
 
 ![GetWatchedMoviesByUser.png](./sanchez-homework-2/GetWatchedMoviesByUser.png)
 
+## Put and Post Request Screenshots
 ### Review (Husainov)
 ![Put Review](./husainov-homework-4/PutUpdateReview.png)
 ![Put Review](./husainov-homework-4/PostNewReview.png)
