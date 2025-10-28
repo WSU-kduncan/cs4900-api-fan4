@@ -15,6 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,5 +56,34 @@ public class ReviewController {
   ResponseEntity<List<ReviewDto>> getReviewsByUser(@PathVariable String username) {
     List<Review> reviews = reviewService.getReviewsByUser(username);
     return new ResponseEntity<>(reviewMapper.toDtoList(reviews), HttpStatus.OK);
+  }
+
+  @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<ReviewDto> createOrUpdateReview(@RequestBody ReviewDto reviewDto) {
+    Review review;
+    try {
+      review = reviewService.createOrUpdateReview(reviewDto);
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    return new ResponseEntity<>(reviewMapper.toDto(review), HttpStatus.OK);
+  }
+
+  @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<ReviewDto> createReview(@RequestBody ReviewDto reviewDto) {
+    Review review;
+    ReviewId id = new ReviewId();
+    id.setUser(new User());
+    id.getUser().setUsername(reviewDto.getUsername());
+    id.setMovie(new Movie());
+    id.getMovie().setMovieID(reviewDto.getMovieID());
+
+    try {
+      review = reviewService.getReviewById(id);
+    } catch (EntityNotFoundException e) {
+      review = reviewService.createNewReview(reviewDto);
+      return new ResponseEntity<>(reviewMapper.toDto(review), HttpStatus.OK);
+    }
+    return new ResponseEntity<>(HttpStatus.CONFLICT);
   }
 }
