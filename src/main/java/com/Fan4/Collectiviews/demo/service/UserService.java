@@ -59,12 +59,12 @@ public class UserService {
   @Transactional
   public User createUser(User user) throws EntityExistsException {
     // Input validation
-    validateUserInput(user);
+    validateUserInput(user); 
 
+    // Try saving new user and let database handle uniqueness
     try {
       return userRepository.saveAndFlush(user);
     } catch (DataIntegrityViolationException e) {
-      // TODO: handle exception
       throw new EntityExistsException("User with that username (" + user.getUsername() + ") already exists");
     }
     
@@ -85,6 +85,11 @@ public class UserService {
     // Null check the input
     if (user.getUsername() == null) {
       throw new IllegalArgumentException("Username can't be null or empty");
+    }
+
+    // Set a default password if null
+    if (user.getPassword_hash() == null) {
+      user.setPassword_hash("default_password");
     }
 
     // Add anymore rules below 

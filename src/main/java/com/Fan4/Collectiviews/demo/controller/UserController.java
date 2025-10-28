@@ -44,7 +44,6 @@ public class UserController {
         userDtoMapper.toDto(userService.getUserById(username)), HttpStatus.OK);
   }
 
-  // TODO: implement findByString
   @GetMapping(path = "search/{name}")
   ResponseEntity<UserDto> getUserByExactName(@PathVariable String name) {
     System.out.println("=== getUserByExactName called with username: " + name + " ===");
@@ -77,6 +76,7 @@ public class UserController {
     } catch (IllegalArgumentException e) {
         return ResponseEntity.badRequest().build(); // 400 status
     }
+    
   }
 
   // TODO: Implement a PUT request
