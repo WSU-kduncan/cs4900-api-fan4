@@ -1,0 +1,28 @@
+meta {
+  name: Update user's name and birth year
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{BASE_URL}}/user/tony_stark123
+  body: json
+  auth: inherit
+}
+
+headers {
+  ~Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "tony_stark123",
+    "name": "Update Tony",
+    "birthYear": "1990-06-14"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

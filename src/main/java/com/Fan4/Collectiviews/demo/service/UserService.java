@@ -1,5 +1,8 @@
 package com.Fan4.Collectiviews.demo.service;
 
+import com.Fan4.Collectiviews.demo.dto.UserDto;
+import com.Fan4.Collectiviews.demo.mapper.UserDtoMapper;
+import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
 import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.repository.UserRepository;
 
@@ -20,6 +23,8 @@ public class UserService {
 
   // Interface to repository
   private final UserRepository userRepository;
+
+  private final UserDtoMapper userDtoMapper;
 
   /* Business Logic Methods */
   public List<User> getAllUsers() {
@@ -94,5 +99,17 @@ public class UserService {
 
     // Add anymore rules below 
     // eg (username must be between 3-30 characters)
+  }
+
+  @Transactional
+  public User saveUser(String username, UserDto requestBody) throws EntityNotFoundException{
+    // Find the existing user
+    User existingUser = getUserById(username);
+
+    // Update just a few fields for now
+    existingUser.setName(requestBody.getName());
+    existingUser.setBirthYear(requestBody.getBirthYear());
+
+    return userRepository.save(existingUser);
   }
 }

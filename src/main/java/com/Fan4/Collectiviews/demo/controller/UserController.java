@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -76,8 +77,29 @@ public class UserController {
     } catch (IllegalArgumentException e) {
         return ResponseEntity.badRequest().build(); // 400 status
     }
-    
+
   }
 
-  // TODO: Implement a PUT request
+  /**
+   * This method will update the user with username = @param username
+   * 
+   * @param username
+   * @param requestBody
+   * @return the updated DTO
+   */
+  @PutMapping(path = "{username}")
+  ResponseEntity<UserDto> updateUser(@PathVariable String username, @RequestBody UserDto requestBody) {
+
+    try {
+        User updatedUser = userService.saveUser(username, requestBody); 
+        return new ResponseEntity<>(
+          userDtoMapper.toDto(updatedUser), HttpStatus.OK);
+        
+    } catch (EntityNotFoundException e) {
+        return ResponseEntity.notFound().build(); // 404
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().build(); // 400
+    }
+  }
+  
 }
