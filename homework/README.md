@@ -28,7 +28,12 @@
 ![PutWatchedMovie.png](./sanchez-homework-4/PutWatchedMovie.png)
 
 ![PostNewWatchedMovie.png](./sanchez-homework-4/PostNewWatchedMovie.png)
+
 ## Put and Post Request Screenshots
 ### Review (Husainov)
 ![Put Review](./husainov-homework-4/PutUpdateReview.png)
-![Put Review](./husainov-homework-4/PostNewReview.png)
+![Post Review](./husainov-homework-4/PostNewReview.png)
+
+### User (Corneja)
+![Put User](./corneja-homework-4/putUpdateUser.png)
+![Post User](./corneja-homework-4/postNewUser.png)
