@@ -1,7 +1,9 @@
 package com.Fan4.Collectiviews.demo.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
@@ -15,7 +17,7 @@ public class UserDto {
 
   String name;
 
-  LocalDate birthYear;
+  LocalDate birthDate;
 
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Only allow input access
   String password;
@@ -23,6 +25,6 @@ public class UserDto {
   // Override to keep password safe from logs
   @Override
   public String toString() {
-    return "UserDto{username='" + username + "', name='" + name + "', birthYear=" + birthYear + "}";
+    return "UserDto{username='" + username + "', name='" + name + "', birthDate=" + birthDate + "}";
   }
 }

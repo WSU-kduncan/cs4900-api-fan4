@@ -103,7 +103,7 @@ public class UserService {
 
     // Update just a few fields for now
     existingUser.setName(requestBody.getName());
-    existingUser.setBirthYear(requestBody.getBirthYear());
+    existingUser.setBirthDate(requestBody.getBirthDate());
 
     return userRepository.save(existingUser);
   }
