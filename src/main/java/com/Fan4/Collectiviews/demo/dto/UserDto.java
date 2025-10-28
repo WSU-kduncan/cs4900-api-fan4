@@ -1,9 +1,7 @@
 package com.Fan4.Collectiviews.demo.dto;
 
-import java.time.LocalDate;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import java.time.LocalDate;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Value;
