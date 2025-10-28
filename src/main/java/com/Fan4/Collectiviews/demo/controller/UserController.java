@@ -2,7 +2,12 @@ package com.Fan4.Collectiviews.demo.controller;
 
 import com.Fan4.Collectiviews.demo.dto.UserDto;
 import com.Fan4.Collectiviews.demo.mapper.UserDtoMapper;
+import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.service.UserService;
+
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,9 +53,31 @@ public class UserController {
   }
 
   // TODO: Implement a POST request
-
-  //@PostMapping(path = "/user")
-
+  /**
+   * 
+   * @param userDto
+   * @return The client DTO sent
+   */
+  @PostMapping
+  ResponseEntity<Object> postUser(@RequestBody UserDto userDto) {
+    
+    try {
+        // Convert DTO to Entity
+        User user = userDtoMapper.toEntity(userDto);
+        
+        // Call service to create user
+        User createdUser = userService.createUser(user);
+        
+        // Convert back to DTO for response
+        UserDto responseDto = userDtoMapper.toDto(createdUser);
+        
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED); // 201 status
+    } catch (EntityExistsException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).build(); // 409 status
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().build(); // 400 status
+    }
+  }
 
   // TODO: Implement a PUT request
 }

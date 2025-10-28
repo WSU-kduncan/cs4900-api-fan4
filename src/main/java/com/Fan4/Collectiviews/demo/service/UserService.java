@@ -2,9 +2,16 @@ package com.Fan4.Collectiviews.demo.service;
 
 import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.repository.UserRepository;
+
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.Null;
+
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -40,5 +47,47 @@ public class UserService {
     }
 
     return users;
+  }
+
+  /**
+   * Creates a new User in the database
+   * 
+   * @param user
+   * @return The User entity
+   * @throws EntityExistsException
+   */
+  @Transactional
+  public User createUser(User user) throws EntityExistsException {
+    // Input validation
+    validateUserInput(user);
+
+    try {
+      return userRepository.saveAndFlush(user);
+    } catch (DataIntegrityViolationException e) {
+      // TODO: handle exception
+      throw new EntityExistsException("User with that username (" + user.getUsername() + ") already exists");
+    }
+    
+  }
+
+  /**
+   * Validates a new User before saving to the database
+   * 
+   * @param user
+   * 
+   */
+  private void validateUserInput(User user) {
+    // Null check the entity
+    if (user == null) {
+      throw new IllegalArgumentException("User cannot be null");
+    }
+
+    // Null check the input
+    if (user.getUsername() == null) {
+      throw new IllegalArgumentException("Username can't be null or empty");
+    }
+
+    // Add anymore rules below 
+    // eg (username must be between 3-30 characters)
   }
 }
