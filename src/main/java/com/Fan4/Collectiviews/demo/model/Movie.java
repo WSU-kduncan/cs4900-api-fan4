@@ -9,8 +9,6 @@ import jakarta.persistence.Table;
 import java.time.LocalDate;
 import lombok.Data;
 
-
-
 @Data
 @Entity
 @Table(name = "movie")

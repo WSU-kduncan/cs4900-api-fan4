@@ -1,16 +1,11 @@
 package com.Fan4.Collectiviews.demo.controller;
 
 import com.Fan4.Collectiviews.demo.dto.MovieDto;
-import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
 import com.Fan4.Collectiviews.demo.mapper.MovieDtoMapper;
 import com.Fan4.Collectiviews.demo.model.Movie;
-import com.Fan4.Collectiviews.demo.model.WatchedMovie;
-import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 import com.Fan4.Collectiviews.demo.service.MovieService;
-
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

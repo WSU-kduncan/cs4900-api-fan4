@@ -1,19 +1,15 @@
 package com.Fan4.Collectiviews.demo.service;
 
-import com.Fan4.Collectiviews.demo.model.Movie;
-import com.Fan4.Collectiviews.demo.repository.MovieRepository;
 import com.Fan4.Collectiviews.demo.dto.MovieDto;
 import com.Fan4.Collectiviews.demo.mapper.MovieDtoMapper;
-
+import com.Fan4.Collectiviews.demo.model.Movie;
+import com.Fan4.Collectiviews.demo.repository.MovieRepository;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-
-import org.hibernate.cache.spi.support.EntityReadOnlyAccess;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -50,22 +46,23 @@ public class MovieService {
   }
 
   public Movie updateMovie(Integer id, MovieDto movieDto) throws EntityNotFoundException {
-    Movie movie = movieRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Movie " + id + " not found"));
+    Movie movie = movieRepository
+        .findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Movie " + id + " not found"));
 
     if (movieDto.getTitle() != null) {
-        movie.setTitle(movieDto.getTitle());
+      movie.setTitle(movieDto.getTitle());
     }
     if (movieDto.getDirector() != null) {
-        movie.setDirector(movieDto.getDirector());
+      movie.setDirector(movieDto.getDirector());
     }
     if (movieDto.getGenre() != null) {
-        movie.setGenre(movieDto.getGenre());
+      movie.setGenre(movieDto.getGenre());
     }
     if (movieDto.getReleaseDate() != null) {
-        movie.setReleaseDate(movieDto.getReleaseDate());
+      movie.setReleaseDate(movieDto.getReleaseDate());
     }
 
     return movieRepository.saveAndFlush(movie);
-}
-
+  }
 }
