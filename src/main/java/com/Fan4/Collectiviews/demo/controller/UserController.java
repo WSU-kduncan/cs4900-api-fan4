@@ -4,10 +4,8 @@ import com.Fan4.Collectiviews.demo.dto.UserDto;
 import com.Fan4.Collectiviews.demo.mapper.UserDtoMapper;
 import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.service.UserService;
-
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -54,52 +52,50 @@ public class UserController {
 
   // TODO: Implement a POST request
   /**
-   * 
+   *
    * @param userDto
    * @return The client DTO sent
    */
   @PostMapping
   ResponseEntity<Object> postUser(@RequestBody UserDto userDto) {
-    
-    try {
-        // Convert DTO to Entity
-        User user = userDtoMapper.toEntity(userDto);
-        
-        // Call service to create user
-        User createdUser = userService.createUser(user);
-        
-        // Convert back to DTO for response
-        UserDto responseDto = userDtoMapper.toDto(createdUser);
-        
-        return new ResponseEntity<>(responseDto, HttpStatus.CREATED); // 201 status
-    } catch (EntityExistsException e) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).build(); // 409 status
-    } catch (IllegalArgumentException e) {
-        return ResponseEntity.badRequest().build(); // 400 status
-    }
 
+    try {
+      // Convert DTO to Entity
+      User user = userDtoMapper.toEntity(userDto);
+
+      // Call service to create user
+      User createdUser = userService.createUser(user);
+
+      // Convert back to DTO for response
+      UserDto responseDto = userDtoMapper.toDto(createdUser);
+
+      return new ResponseEntity<>(responseDto, HttpStatus.CREATED); // 201 status
+    } catch (EntityExistsException e) {
+      return ResponseEntity.status(HttpStatus.CONFLICT).build(); // 409 status
+    } catch (IllegalArgumentException e) {
+      return ResponseEntity.badRequest().build(); // 400 status
+    }
   }
 
   /**
    * This method will update the user with username = @param username
-   * 
+   *
    * @param username
    * @param requestBody
    * @return the updated DTO
    */
   @PutMapping(path = "{username}")
-  ResponseEntity<UserDto> updateUser(@PathVariable String username, @RequestBody UserDto requestBody) {
+  ResponseEntity<UserDto> updateUser(
+      @PathVariable String username, @RequestBody UserDto requestBody) {
 
     try {
-        User updatedUser = userService.saveUser(username, requestBody); 
-        return new ResponseEntity<>(
-          userDtoMapper.toDto(updatedUser), HttpStatus.OK);
-        
+      User updatedUser = userService.saveUser(username, requestBody);
+      return new ResponseEntity<>(userDtoMapper.toDto(updatedUser), HttpStatus.OK);
+
     } catch (EntityNotFoundException e) {
-        return ResponseEntity.notFound().build(); // 404
+      return ResponseEntity.notFound().build(); // 404
     } catch (IllegalArgumentException e) {
-        return ResponseEntity.badRequest().build(); // 400
+      return ResponseEntity.badRequest().build(); // 400
     }
   }
-  
 }

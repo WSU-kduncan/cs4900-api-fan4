@@ -2,18 +2,13 @@ package com.Fan4.Collectiviews.demo.service;
 
 import com.Fan4.Collectiviews.demo.dto.UserDto;
 import com.Fan4.Collectiviews.demo.mapper.UserDtoMapper;
-import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
 import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.repository.UserRepository;
-
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.Null;
-
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -56,7 +51,7 @@ public class UserService {
 
   /**
    * Creates a new User in the database
-   * 
+   *
    * @param user
    * @return The User entity
    * @throws EntityExistsException
@@ -64,22 +59,22 @@ public class UserService {
   @Transactional
   public User createUser(User user) throws EntityExistsException {
     // Input validation
-    validateUserInput(user); 
+    validateUserInput(user);
 
     // Try saving new user and let database handle uniqueness
     try {
       return userRepository.saveAndFlush(user);
     } catch (DataIntegrityViolationException e) {
-      throw new EntityExistsException("User with that username (" + user.getUsername() + ") already exists");
+      throw new EntityExistsException(
+          "User with that username (" + user.getUsername() + ") already exists");
     }
-    
   }
 
   /**
    * Validates a new User before saving to the database
-   * 
+   *
    * @param user
-   * 
+   *
    */
   private void validateUserInput(User user) {
     // Null check the entity
@@ -97,12 +92,12 @@ public class UserService {
       user.setPassword_hash("default_password");
     }
 
-    // Add anymore rules below 
+    // Add anymore rules below
     // eg (username must be between 3-30 characters)
   }
 
   @Transactional
-  public User saveUser(String username, UserDto requestBody) throws EntityNotFoundException{
+  public User saveUser(String username, UserDto requestBody) throws EntityNotFoundException {
     // Find the existing user
     User existingUser = getUserById(username);
 
