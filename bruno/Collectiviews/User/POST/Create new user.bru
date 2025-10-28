@@ -1,0 +1,29 @@
+meta {
+  name: Create new user
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BASE_URL}}/user
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "tony_stark123",
+    "name": "Tony Stark",
+    "birthYear": "2000-02-05",
+    "password": "tony123"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
