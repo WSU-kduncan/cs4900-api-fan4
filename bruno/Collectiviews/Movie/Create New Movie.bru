@@ -1,0 +1,30 @@
+meta {
+  name: Create New Movie
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/movie
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "title": "The Sixth Sense",
+    "director": "M. Night Shyamalan",
+    "genre": "Thriller",
+    "releaseDate": "1999-08-07"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
