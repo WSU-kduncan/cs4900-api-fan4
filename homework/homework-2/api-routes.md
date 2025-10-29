@@ -46,7 +46,9 @@
 - Update Movie
 
 ### watchedMovie Entity
-- Update watched movie status (Watched Date)
+- Update watched movie status
+  - Practically only watched movie date will be changed
+  -  PUT returns 201 when creating a new object and 200 when updating
 
 ### review Entity
 - Update review
