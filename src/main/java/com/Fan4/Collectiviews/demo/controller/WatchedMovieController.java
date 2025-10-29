@@ -63,12 +63,34 @@ public class WatchedMovieController {
   @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<Object> putWatchedMovie(@RequestBody WatchedMovieDto watchedMovieDto) {
     WatchedMovie watchedMovie;
+    WatchedMovieId id = new WatchedMovieId();
+    id.setUser(new User());
+    id.getUser().setUsername(watchedMovieDto.getUser());
+    id.setMovie(new Movie());
+    id.getMovie().setMovieID(watchedMovieDto.getMovieID());
+
     try {
-      watchedMovie = watchedMovieService.createOrUpdateWatchedMovie(watchedMovieDto);
-    } catch (EntityNotFoundException e) {
-      return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+      watchedMovie = watchedMovieService.getWatchedMovieById(id);
+
+      // Updating entity
+      try {
+        watchedMovie = watchedMovieService.createOrUpdateWatchedMovie(watchedMovieDto);
+      } catch (EntityNotFoundException e) {
+        return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+      }
+      return new ResponseEntity<>(watchedMovieDtoMapper.toDto(watchedMovie), HttpStatus.OK);
+    } catch (EntityNotFoundException e) { // Entity does not already exist
+
+      // Creating new entity
+      try {
+        watchedMovie = watchedMovieService.createOrUpdateWatchedMovie(watchedMovieDto);
+      } catch (EntityNotFoundException exception) {
+        return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.BAD_REQUEST);
+      }
+      return new ResponseEntity<>(
+          watchedMovieDtoMapper.toDto(watchedMovie),
+          HttpStatus.CREATED); // HTTP Status demonstrates new entity is created
     }
-    return new ResponseEntity<>(watchedMovieDtoMapper.toDto(watchedMovie), HttpStatus.OK);
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
