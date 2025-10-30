@@ -67,7 +67,7 @@ Ensure the following are installed on your system:
 - Bruno
 - DBeaver
 
-NOTE: Spring Boot and JPA are utilized in this project; however, additional installation for these dependencies will not be necessary as they are included via Gradle dependencies.
+**NOTE:** Spring Boot and JPA are utilized in this project; however, additional installation for these dependencies will not be necessary as they are included via Gradle dependencies.
 
 1. Clone the repository
     - Run: `git clone https://github.com/WSU-kduncan/cs4900-api-fan4.git`
