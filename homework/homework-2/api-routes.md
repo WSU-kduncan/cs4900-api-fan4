@@ -1,5 +1,5 @@
 # API ROUTES
-
+- All are completed and fully functional
 ## GET methods
 
 ### movie Entity
