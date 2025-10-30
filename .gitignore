@@ -43,6 +43,7 @@ out/
 
 ### macOS Thumbnails ###
 ._*
+**/._*
 
 ### macOS Directories potentially containing settings ###
 .AppleDB
