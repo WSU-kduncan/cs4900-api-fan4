@@ -30,7 +30,7 @@ Ensure the following are installed on your system:
     - Navigate to cs4900-api-fan4/src/main/java/com/Fan4/Collectiviews/demo/Fan4.java
     - Click run java in vscode
 
-7. Examine API funciton
+7. Examine API function
     - Review `api-definitions` in `/homework/homework-2/api-routes.md`
       - This will provide a review of the API functionality for database and front end integration
 
