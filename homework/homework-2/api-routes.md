@@ -83,8 +83,7 @@ Ensure the following are installed on your system:
 5. Skip if populated: Click on SQL editor on the top menu in DBeaver. Paste the SQL script and click run SQL script on the left menu inside the editor found at `https://github.com/WSU-kduncan/cs4900-fan4/tree/feedback/DatabaseDesign/InitializationScripts`
 
 6. Run the Spring Boot API application
-  - Ensure you are on the main branch
-    - If not run: `git checkout -b main`
+    - Ensure you are on the main branch, if not run: `git checkout -b main`
     - Navigate to cs4900-api-fan4/src/main/java/com/Fan4/Collectiviews/demo/Fan4.java
     - Click run java in vscode
     
