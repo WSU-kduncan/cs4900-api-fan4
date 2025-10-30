@@ -70,26 +70,25 @@ Ensure the following are installed on your system:
 1. Clone the repository
     - Run: `git clone https://github.com/WSU-kduncan/cs4900-api-fan4.git`
     
-2. Ensure you are on the main branch
-    - If not run: `git checkout -b main`
-    
-3. Clone the database repository
+2. Clone the database repository
     - Run: `git clone https://github.com/WSU-kduncan/cs4900-fan4.git`
     
-4. Start the database container
+3. Start the database container
     - Navigate to the database directory that contains the Docker Compose file: `cd cs4900-fan4/DatabaseDesign/`
     - Run: `docker compose up -d`
     
-6. Verify database connection
+4. Verify database connection
     - Open DBeaver to ensure the database is connected on the same port (should be 4444). Refer to README file for further instructions found at `https://github.com/WSU-kduncan/cs4900-fan4/blob/feedback/DatabaseDesign/README.md`
     
-7. Skip if populated: Click on SQL editor on the top menu in DBeaver. Paste the SQL script and click run SQL script on the left menu inside the editor found at `https://github.com/WSU-kduncan/cs4900-fan4/tree/feedback/DatabaseDesign/InitializationScripts`
+5. Skip if populated: Click on SQL editor on the top menu in DBeaver. Paste the SQL script and click run SQL script on the left menu inside the editor found at `https://github.com/WSU-kduncan/cs4900-fan4/tree/feedback/DatabaseDesign/InitializationScripts`
 
-8. Run the Spring Boot API application
-    - navigate to cs4900-api-fan4/src/main/java/com/Fan4/Collectiviews/demo/Fan4.java
+6. Run the Spring Boot API application
+  - Ensure you are on the main branch
+    - If not run: `git checkout -b main`
+    - Navigate to cs4900-api-fan4/src/main/java/com/Fan4/Collectiviews/demo/Fan4.java
     - Click run java in vscode
     
-9. Test API
+7. Test API
     - Open Bruno and import the provided collection
     - Test various endpoints using GET, POST, and PUT
 
