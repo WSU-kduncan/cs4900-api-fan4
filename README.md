@@ -1,7 +1,7 @@
 # cs4900-api-fan4
 ## HOW TO RUN API
 Ensure the following are installed on your system:
-- Java JDK (17 or higher) 
+- Java JDK (must be 17 specifically) 
 - Gradle
 - MariaDb
 - Git
@@ -29,8 +29,11 @@ Ensure the following are installed on your system:
     - Ensure you are on the main branch, if not run: `git checkout -b main`
     - Navigate to cs4900-api-fan4/src/main/java/com/Fan4/Collectiviews/demo/Fan4.java
     - Click run java in vscode
-    
-7. Test API
-    - Open Bruno and import the provided collection
-    - Test various endpoints using GET, POST, and PUT
 
+7. Examine API funciton
+    - Review `api-definitions` in `/homework/homework-2/api-routes.md`
+      - This will provide a review of the API functionality for database and front end integration
+
+8. Test API
+    - Open Bruno and import the provided collection (in root of repo `/bruno/*`)
+    - Test various endpoints using GET, POST, and PUT
