@@ -37,3 +37,7 @@
 ### User (Corneja)
 ![Put User](./corneja-homework-4/putUpdateUser.png)
 ![Post User](./corneja-homework-4/postNewUser.png)
+
+### Movie (Dawson)
+![Put Movie](./dawson-homework-4/update-movie.png)
+![Post Movie](./dawson-homework-4/create-new-movie.png)
