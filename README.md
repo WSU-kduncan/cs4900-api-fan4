@@ -1,7 +1,7 @@
 # cs4900-api-fan4
 ## HOW TO RUN API
 Ensure the following are installed on your system:
-- Java JDK (must be 17 specifically) 
+- Java JDK (must be Java17 specifically) 
 - Gradle
 - MariaDb
 - Git
