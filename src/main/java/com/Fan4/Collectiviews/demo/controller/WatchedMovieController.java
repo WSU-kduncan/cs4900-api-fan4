@@ -115,14 +115,14 @@ public class WatchedMovieController {
     return new ResponseEntity<>(HttpStatus.CONFLICT);
   }
 
-  @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-  ResponseEntity<Object> deleteWatchedMovie(@RequestBody WatchedMovieDto watchedMovieDto) {
+  @DeleteMapping(path = "{movieId}/{username}")
+  ResponseEntity<Object> deleteWatchedMovie(@PathVariable Integer movieId, @PathVariable String username) {
 
     WatchedMovieId id = new WatchedMovieId();
     id.setUser(new User());
-    id.getUser().setUsername(watchedMovieDto.getUser());
+    id.getUser().setUsername(username);
     id.setMovie(new Movie());
-    id.getMovie().setMovieID(watchedMovieDto.getMovieID());
+    id.getMovie().setMovieID(movieId);
 
     try {
       watchedMovieService.getWatchedMovieById(id); // Check to ensure watchedMovie exists before deleting it
