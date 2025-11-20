@@ -1,18 +1,11 @@
 package com.Fan4.Collectiviews.demo.controller;
 
-import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
-import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
-import com.Fan4.Collectiviews.demo.model.Movie;
-import com.Fan4.Collectiviews.demo.model.User;
-import com.Fan4.Collectiviews.demo.model.WatchedMovie;
-import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
-import com.Fan4.Collectiviews.demo.service.WatchedMovieService;
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +13,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
+import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
+import com.Fan4.Collectiviews.demo.model.Movie;
+import com.Fan4.Collectiviews.demo.model.User;
+import com.Fan4.Collectiviews.demo.model.WatchedMovie;
+import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
+import com.Fan4.Collectiviews.demo.service.WatchedMovieService;
+
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
@@ -103,11 +107,29 @@ public class WatchedMovieController {
     id.getMovie().setMovieID(watchedMovieDto.getMovieID());
 
     try {
-      watchedMovie = watchedMovieService.getWatchedMovieById(id);
+      watchedMovieService.getWatchedMovieById(id);
     } catch (EntityNotFoundException e) {
       watchedMovie = watchedMovieService.createNewWatchedMovie(watchedMovieDto);
       return new ResponseEntity<>(watchedMovieDtoMapper.toDto(watchedMovie), HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.CONFLICT);
+  }
+
+  @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<Object> deleteWatchedMovie(@RequestBody WatchedMovieDto watchedMovieDto) {
+
+    WatchedMovieId id = new WatchedMovieId();
+    id.setUser(new User());
+    id.getUser().setUsername(watchedMovieDto.getUser());
+    id.setMovie(new Movie());
+    id.getMovie().setMovieID(watchedMovieDto.getMovieID());
+
+    try {
+      watchedMovieService.getWatchedMovieById(id); // Check to ensure watchedMovie exists before deleting it
+      watchedMovieService.deleteWatchedMovieById(id);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
   }
 }
