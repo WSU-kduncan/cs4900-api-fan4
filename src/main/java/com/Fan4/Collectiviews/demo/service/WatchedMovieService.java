@@ -1,18 +1,15 @@
 package com.Fan4.Collectiviews.demo.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-
 import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
 import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
 import com.Fan4.Collectiviews.demo.model.WatchedMovie;
 import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
 import com.Fan4.Collectiviews.demo.repository.WatchedMovieRepository;
-
 import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -59,13 +56,11 @@ public class WatchedMovieService {
     return watchedMovieRepository.saveAndFlush(watchedMovie);
   }
 
-  public void deleteWatchedMovieById(WatchedMovieId id) throws EntityNotFoundException{
-    try{
+  public void deleteWatchedMovieById(WatchedMovieId id) throws EntityNotFoundException {
+    try {
       watchedMovieRepository.deleteById(id);
-    }
-    catch (Error e){
+    } catch (Error e) {
       throw new EntityNotFoundException("Provided watched movie does not exist");
     }
-
   }
 }

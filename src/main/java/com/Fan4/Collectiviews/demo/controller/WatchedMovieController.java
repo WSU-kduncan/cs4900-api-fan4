@@ -1,7 +1,15 @@
 package com.Fan4.Collectiviews.demo.controller;
 
+import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
+import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
+import com.Fan4.Collectiviews.demo.model.Movie;
+import com.Fan4.Collectiviews.demo.model.User;
+import com.Fan4.Collectiviews.demo.model.WatchedMovie;
+import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
+import com.Fan4.Collectiviews.demo.service.WatchedMovieService;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +21,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.Fan4.Collectiviews.demo.dto.WatchedMovieDto;
-import com.Fan4.Collectiviews.demo.mapper.WatchedMovieDtoMapper;
-import com.Fan4.Collectiviews.demo.model.Movie;
-import com.Fan4.Collectiviews.demo.model.User;
-import com.Fan4.Collectiviews.demo.model.WatchedMovie;
-import com.Fan4.Collectiviews.demo.model.composite.WatchedMovieId;
-import com.Fan4.Collectiviews.demo.service.WatchedMovieService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
@@ -116,7 +113,8 @@ public class WatchedMovieController {
   }
 
   @DeleteMapping(path = "{movieId}/{username}")
-  ResponseEntity<Object> deleteWatchedMovie(@PathVariable Integer movieId, @PathVariable String username) {
+  ResponseEntity<Object> deleteWatchedMovie(
+      @PathVariable Integer movieId, @PathVariable String username) {
 
     WatchedMovieId id = new WatchedMovieId();
     id.setUser(new User());
@@ -125,7 +123,8 @@ public class WatchedMovieController {
     id.getMovie().setMovieID(movieId);
 
     try {
-      watchedMovieService.getWatchedMovieById(id); // Check to ensure watchedMovie exists before deleting it
+      watchedMovieService.getWatchedMovieById(
+          id); // Check to ensure watchedMovie exists before deleting it
       watchedMovieService.deleteWatchedMovieById(id);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (EntityNotFoundException e) {
