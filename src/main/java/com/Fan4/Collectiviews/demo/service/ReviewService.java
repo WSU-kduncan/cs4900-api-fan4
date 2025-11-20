@@ -1,15 +1,18 @@
 package com.Fan4.Collectiviews.demo.service;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.Fan4.Collectiviews.demo.dto.ReviewDto;
 import com.Fan4.Collectiviews.demo.mapper.ReviewDtoMapper;
 import com.Fan4.Collectiviews.demo.model.Review;
 import com.Fan4.Collectiviews.demo.model.composite.ReviewId;
 import com.Fan4.Collectiviews.demo.repository.ReviewRepository;
+
 import jakarta.persistence.EntityNotFoundException;
-import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -29,6 +32,12 @@ public class ReviewService {
           + id.getUser().getUsername() + " MovieID: " + id.getMovie().getMovieID());
     }
     return review.get();
+  }
+
+  public Review deleteReviewById(ReviewId id) throws EntityNotFoundException {
+    Review review = getReviewById(id);
+    reviewRepository.deleteById(id);
+    return review;
   }
 
   public List<Review> getReviewsByUser(String username) {
