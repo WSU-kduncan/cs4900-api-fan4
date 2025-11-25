@@ -1,7 +1,15 @@
 package com.Fan4.Collectiviews.demo.controller;
 
+import com.Fan4.Collectiviews.demo.dto.ReviewDto;
+import com.Fan4.Collectiviews.demo.mapper.ReviewDtoMapper;
+import com.Fan4.Collectiviews.demo.model.Movie;
+import com.Fan4.Collectiviews.demo.model.Review;
+import com.Fan4.Collectiviews.demo.model.User;
+import com.Fan4.Collectiviews.demo.model.composite.ReviewId;
+import com.Fan4.Collectiviews.demo.service.ReviewService;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +21,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.Fan4.Collectiviews.demo.dto.ReviewDto;
-import com.Fan4.Collectiviews.demo.mapper.ReviewDtoMapper;
-import com.Fan4.Collectiviews.demo.model.Movie;
-import com.Fan4.Collectiviews.demo.model.Review;
-import com.Fan4.Collectiviews.demo.model.User;
-import com.Fan4.Collectiviews.demo.model.composite.ReviewId;
-import com.Fan4.Collectiviews.demo.service.ReviewService;
-
-import jakarta.persistence.EntityNotFoundException;
-import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
@@ -64,7 +61,7 @@ public class ReviewController {
 
   @DeleteMapping("/by-id/{username}/{movieID}")
   ResponseEntity<Void> deleteReviewById(
-    @PathVariable String username, @PathVariable Integer movieID) {
+      @PathVariable String username, @PathVariable Integer movieID) {
     ReviewId id = new ReviewId();
     id.setUser(new User());
     id.getUser().setUsername(username);
@@ -79,7 +76,7 @@ public class ReviewController {
   }
 
   @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<ReviewDto> createOrUpdateReview(@RequestBody ReviewDto reviewDto) {
+  ResponseEntity<ReviewDto> createOrUpdateReview(@RequestBody ReviewDto reviewDto) {
     Review review;
     try {
       review = reviewService.createOrUpdateReview(reviewDto);
