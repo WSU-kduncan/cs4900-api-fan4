@@ -1,0 +1,15 @@
+meta {
+  name: Delete User by username
+  type: http
+  seq: 1
+}
+
+delete {
+  url: {{BASE_URL}}/user/by-username/tony_stark123
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

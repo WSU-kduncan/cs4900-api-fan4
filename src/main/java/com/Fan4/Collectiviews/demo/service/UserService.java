@@ -107,4 +107,16 @@ public class UserService {
 
     return userRepository.save(existingUser);
   }
+
+  public void deleteUser(String username) throws EntityNotFoundException {
+    try {
+      // Checks for existance before deletion
+      userRepository
+          .findById(username)
+          .orElseThrow(() -> new EntityNotFoundException("User (" + username + ") not found"));
+      userRepository.deleteById(username);
+    } catch (Error e) {
+      throw new EntityNotFoundException("Provided User does not exist");
+    }
+  }
 }
