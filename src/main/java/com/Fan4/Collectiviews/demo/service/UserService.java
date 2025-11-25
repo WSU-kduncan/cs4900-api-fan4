@@ -1,16 +1,19 @@
 package com.Fan4.Collectiviews.demo.service;
 
+import java.util.List;
+
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+
 import com.Fan4.Collectiviews.demo.dto.UserDto;
 import com.Fan4.Collectiviews.demo.mapper.UserDtoMapper;
 import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.repository.UserRepository;
+
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -110,6 +113,10 @@ public class UserService {
 
   public void deleteUser(String username) throws EntityNotFoundException {
     try {
+      // Checks for existance before deletion
+      userRepository
+        .findById(username)
+        .orElseThrow(() -> new EntityNotFoundException("User (" + username + ") not found"));
       userRepository.deleteById(username);
     } catch (Error e) {
       throw new EntityNotFoundException("Provided User does not exist");
