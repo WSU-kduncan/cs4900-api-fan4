@@ -65,4 +65,16 @@ public class MovieService {
 
     return movieRepository.saveAndFlush(movie);
   }
+
+  public void deleteMovie(Integer id) throws EntityNotFoundException {
+    try {
+      // Checks for existancec before deletion
+      movieRepository
+          .findById(id)
+          .orElseThrow(() -> new EntityNotFoundException("Movie (" + id + ") not found"));
+      movieRepository.deleteById(id);
+    } catch (Exception e) {
+      throw new EntityNotFoundException("Provided Movie does not exist");
+    }
+  }
 }
