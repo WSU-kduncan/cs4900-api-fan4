@@ -4,14 +4,10 @@ import com.Fan4.Collectiviews.demo.dto.UserDto;
 import com.Fan4.Collectiviews.demo.mapper.UserDtoMapper;
 import com.Fan4.Collectiviews.demo.model.User;
 import com.Fan4.Collectiviews.demo.service.UserService;
-
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
-
 import java.util.List;
-
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
