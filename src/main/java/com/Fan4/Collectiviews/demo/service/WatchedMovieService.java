@@ -55,4 +55,12 @@ public class WatchedMovieService {
 
     return watchedMovieRepository.saveAndFlush(watchedMovie);
   }
+
+  public void deleteWatchedMovieById(WatchedMovieId id) throws EntityNotFoundException {
+    try {
+      watchedMovieRepository.deleteById(id);
+    } catch (Error e) {
+      throw new EntityNotFoundException("Provided watched movie does not exist");
+    }
+  }
 }

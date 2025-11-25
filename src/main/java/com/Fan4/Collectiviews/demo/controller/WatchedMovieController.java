@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -103,11 +104,31 @@ public class WatchedMovieController {
     id.getMovie().setMovieID(watchedMovieDto.getMovieID());
 
     try {
-      watchedMovie = watchedMovieService.getWatchedMovieById(id);
+      watchedMovieService.getWatchedMovieById(id);
     } catch (EntityNotFoundException e) {
       watchedMovie = watchedMovieService.createNewWatchedMovie(watchedMovieDto);
       return new ResponseEntity<>(watchedMovieDtoMapper.toDto(watchedMovie), HttpStatus.OK);
     }
     return new ResponseEntity<>(HttpStatus.CONFLICT);
+  }
+
+  @DeleteMapping(path = "{movieId}/{username}")
+  ResponseEntity<Object> deleteWatchedMovie(
+      @PathVariable Integer movieId, @PathVariable String username) {
+
+    WatchedMovieId id = new WatchedMovieId();
+    id.setUser(new User());
+    id.getUser().setUsername(username);
+    id.setMovie(new Movie());
+    id.getMovie().setMovieID(movieId);
+
+    try {
+      watchedMovieService.getWatchedMovieById(
+          id); // Check to ensure watchedMovie exists before deleting it
+      watchedMovieService.deleteWatchedMovieById(id);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (EntityNotFoundException e) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
   }
 }

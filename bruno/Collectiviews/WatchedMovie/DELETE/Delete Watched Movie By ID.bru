@@ -1,12 +1,12 @@
 meta {
-  name: Get Watched Movie Entry By User And ID
+  name: Delete Watched Movie By ID
   type: http
   seq: 1
 }
 
-get {
+delete {
   url: {{BASE_URL}}/watched-movie/1/jdoe
-  body: json
+  body: none
   auth: inherit
 }
 
